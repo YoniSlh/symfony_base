@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Doctrine\ORM\EntityManagerInterface;
 
 class BurgerController extends AbstractController
 {
@@ -14,7 +15,7 @@ class BurgerController extends AbstractController
         1 => ['id' => 1, 'name' => 'Classic Burger', 'price' => 5.50, 'description' => 'C\'est un burger mais classic', 'image' => 'classic-burger.png'],
         2 => ['id' => 2, 'name' => 'Bacon Burger', 'price' => 6.00, 'description' => 'Un burger avec du bacon', 'image' => 'bacon-burger.jpeg'],
     ];
-    
+
     #[Route('/burgers', name: 'burgers_list', methods: ['GET'])]
     public function list(): Response
     {
@@ -35,5 +36,19 @@ class BurgerController extends AbstractController
         return $this->render('burgers_show.html.twig', [
             'burger' => $burger,
         ]);
+    }
+
+    #[Route('/burger/create', name: 'burger_create')]
+    public function create(EntityManagerInterface $entityManager): Response
+    {
+        $burger = new Burger();
+        $burger->setName('Krabby Patty');
+        $burger->setPrice(4.99);
+
+        // Persister et sauvegarder le nouveau burger
+        $entityManager->persist($burger);
+        $entityManager->flush();
+
+        return new Response('Burger créé avec succès !');
     }
 }
