@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Burger - CRUDcroustillant
+{% endblock %}
+
+{% block content %}
+	{% include '_header.html.twig' %}
+	<h1>🍔 Détails du Burger</h1>
+	<div>
+		<h2>ID du Burger :
+			{{ burger.id }}</h2>
+		<ul>
+			<li>
+				<strong>Nom :</strong>
+				{{ burger.name }}</li>
+			<li>
+				<strong>Description :</strong>
+				{{ burger.description }}</li>
+			<li>
+				<strong>Prix :</strong>
+				{{ burger.price }}
+				€</li>
+		</ul>
+		<img src="{{ asset('/styles/images/' ~ burger.image) }}" alt="{{ burger.name }}" style="width: 300px; height: auto; border-radius: 25px;">
+	</div>
+    {% include '_footer.html.twig' %}
+{% endblock %}

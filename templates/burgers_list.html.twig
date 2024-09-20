@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Burgers - CRUDcroustillant
+{% endblock %}
+
+{% block content %}
+	{% include '_header.html.twig' %}
+	<h1>🍔 Liste des Burgers</h1>
+	<ul>
+		{% for burger in burgers %}
+			<li>
+				<a href="{{ path('burgers_show', {'id': burger.id}) }}">{{ burger.name }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	{% include '_footer.html.twig' %}
+{% endblock %}
