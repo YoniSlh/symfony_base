@@ -70,4 +70,16 @@ class Burger
 
         return $this;
     }
+
+    public function getPain(): ?Pain
+    {
+        return $this->pain;
+    }
+
+    public function setPain(?Pain $pain): self
+    {
+        $this->pain = $pain;
+
+        return $this;
+    }
 }

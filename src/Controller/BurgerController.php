@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Pain;
 
 class BurgerController extends AbstractController
 {
@@ -38,12 +39,17 @@ class BurgerController extends AbstractController
     #[Route('/burgers/create', name: 'burger_create')]
     public function create(EntityManagerInterface $entityManager): Response
     {
+        $pain = new Pain();
+        $pain->setName('Pain complet');
+
         $burger = new Burger();
         $burger->setName('Krabby Patty');
         $burger->setPrice(4.99);
+        $burger->setPain($pain);
 
         // Persister et sauvegarder le nouveau burger
         $entityManager->persist($burger);
+        $entityManager->persist($pain);
         $entityManager->flush();
 
         return new Response('Burger créé avec succès !');
