@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Image extends Fixture
+class ImageFixtures extends Fixture
 {
+    public const IMAGE_REFERENCE = 'Image';
     public function load(ObjectManager $manager): void
     {
         $image = new \App\Entity\Image();

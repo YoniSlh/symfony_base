@@ -4,17 +4,16 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use App\Entity\Pain;
 
-class Pain extends Fixture
+class PainFixtures extends Fixture
 {
+    public const PAIN_REFERENCE = 'Pain';
     public function load(ObjectManager $manager): void
     {
         $pain1 = new Pain();
+        $pain1->setName("Pain complet");
         $manager->persist($pain1);
-        $pain2 = new Pain();
-        $manager->persist($pain2);
-        $pain3 = new Pain();
-        $manager->persist($pain3);
-        $manager->flush();
+        $this->addReference(self::PAIN_REFERENCE . '' . 0, $pain1);
     }
 }

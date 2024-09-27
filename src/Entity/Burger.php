@@ -36,14 +36,10 @@ class Burger
     #[ORM\JoinColumn(nullable: true)]
     private $image;
 
-    #[ORM\OneToMany(mappedBy: 'burger', targetEntity: Commentaire::class, cascade: ['persist', 'remove'])]
-    private $commentaires;
-
     public function __construct()
     {
         $this->oignons = new ArrayCollection();
         $this->sauces = new ArrayCollection();
-        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,18 +67,6 @@ class Burger
     public function setPrice(string $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->commentaires;
-    }
-
-    public function setDescription(string $commentaires): self
-    {
-        $this->commentaires = $commentaires;
 
         return $this;
     }
