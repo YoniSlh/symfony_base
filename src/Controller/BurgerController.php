@@ -11,10 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class BurgerController extends AbstractController
 {
-    private array $burgers = [
-        1 => ['id' => 1, 'name' => 'Classic Burger', 'price' => 5.50, 'description' => 'C\'est un burger mais classic', 'image' => 'classic-burger.png'],
-        2 => ['id' => 2, 'name' => 'Bacon Burger', 'price' => 6.00, 'description' => 'Un burger avec du bacon', 'image' => 'bacon-burger.jpeg'],
-    ];
+    private array $burgers = [];
 
     #[Route('/burgers', name: 'burgers_list', methods: ['GET'])]
     public function list(): Response
@@ -24,7 +21,7 @@ class BurgerController extends AbstractController
         ]);
     }
 
-    #[Route('/burgers/{id}', name: 'burgers_show', methods: ['GET'])]
+    #[Route('/burgers/show/{id}', name: 'burgers_show', methods: ['GET'])]
     public function show(int $id): Response
     {
         if (!isset($this->burgers[$id])) {
@@ -38,7 +35,7 @@ class BurgerController extends AbstractController
         ]);
     }
 
-    #[Route('/burger/create', name: 'burger_create')]
+    #[Route('/burgers/create', name: 'burger_create')]
     public function create(EntityManagerInterface $entityManager): Response
     {
         $burger = new Burger();

@@ -74,4 +74,16 @@ class Burger
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->commentaires;
+    }
+
+    public function setDescription(string $commentaires): self
+    {
+        $this->commentaires = $commentaires;
+
+        return $this;
+    }
 }

@@ -21,7 +21,7 @@
 				{{ burger.price }}
 				€</li>
 		</ul>
-		<img src="{{ asset('/styles/images/' ~ burger.image) }}" alt="{{ burger.name }}" style="width: 300px; height: auto; border-radius: 25px;">
+		<img src="{{ asset('images/' ~ burger.image) }}" alt="{{ burger.name }}" style="width: 300px; height: auto; border-radius: 25px;">
 	</div>
     {% include '_footer.html.twig' %}
 {% endblock %}

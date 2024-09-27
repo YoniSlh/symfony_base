@@ -9,12 +9,13 @@ class Image extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $image1 = new Image();
-        $manager->persist($image1);
-        $image2 = new Image();
-        $manager->persist($image2);
-        $image3 = new Image();
-        $manager->persist($image3);
+        $image = new \App\Entity\Image();
+        $image->setUrl('https://www.burgerquizz.fr/wp-content/uploads/2019/10/burger-quiz-1.jpg');
+        $manager->persist($image);
+        
+        $image = new \App\Entity\Image();
+        $image->setUrl('https://www.burgerquizz.fr/wp-content/uploads/2019/10/burger-quiz-2.jpg');
+        $manager->persist($image);
         $manager->flush();
     }
 }
