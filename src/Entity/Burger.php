@@ -95,10 +95,15 @@ class Burger
     public function setImage(?Image $image): self
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
+    public function getImageUrl(): ?string
+    {
+        return $this->image ? $this->image->getUrl() : null;
+    }
+    
     public function getCommentaire(): ?Commentaire
     {
         return $this->commentaire;

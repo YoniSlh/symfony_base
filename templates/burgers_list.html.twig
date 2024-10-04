@@ -9,7 +9,10 @@
 	<ul>
 		{% for burger in burgers %}
 			<li>
-				<a href="{{ path('burgers_show', {'id': burger.id}) }}">{{ burger.name }}</a>
+				<a href="{{ path('burgers_show', {'id': burger.id}) }}">
+					<img src="{{ burger.getImageUrl() }}" width="100" height="100">
+					{{ burger.name }}
+				</a>
 			</li>
 		{% endfor %}
 	</ul>

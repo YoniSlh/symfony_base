@@ -11,9 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Pain;
 
 class BurgerController extends AbstractController
-{
-    private array $burgers = [];
-    
+{    
     #[Route('/burgers', name: 'burgers_list', methods: ['GET'])]
     public function list(EntityManagerInterface $entityManager): Response
     {
