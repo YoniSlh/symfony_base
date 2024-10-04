@@ -5,15 +5,15 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Oignon extends Fixture
+class OignonFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $oignon1 = new Oignon();
+        $oignon1 = new OignonFixtures();
         $manager->persist($oignon1);
-        $oignon2 = new Oignon();
+        $oignon2 = new OignonFixtures();
         $manager->persist($oignon2);
-        $oignon3 = new Oignon();
+        $oignon3 = new OignonFixtures();
         $manager->persist($oignon3);
         $manager->flush();
     }

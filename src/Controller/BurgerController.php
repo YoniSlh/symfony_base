@@ -23,13 +23,13 @@ class BurgerController extends AbstractController
     }
 
     #[Route('/burgers/show/{id}', name: 'burgers_show', methods: ['GET'])]
-    public function show(int $id): Response
+    public function show(int $id, EntityManagerInterface $entityManager): Response
     {
-        if (!isset($this->burgers[$id])) {
+        $burger = $entityManager->getRepository(Burger::class)->find($id);
+
+        if (!$burger) {
             throw $this->createNotFoundException('Le burger demandé n\'existe pas.');
         }
-
-        $burger = $this->burgers[$id];
 
         return $this->render('burgers_show.html.twig', [
             'burger' => $burger,

@@ -36,6 +36,10 @@ class Burger
     #[ORM\JoinColumn(nullable: true)]
     private $image;
 
+    #[ORM\OneToOne(targetEntity: Commentaire::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private $commentaire;
+
     public function __construct()
     {
         $this->oignons = new ArrayCollection();
@@ -79,6 +83,30 @@ class Burger
     public function setPain(?Pain $pain): self
     {
         $this->pain = $pain;
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    public function getCommentaire(): ?Commentaire
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?Commentaire $commentaire): self
+    {
+        $this->commentaire = $commentaire;
 
         return $this;
     }
