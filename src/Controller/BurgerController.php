@@ -13,12 +13,14 @@ use App\Entity\Pain;
 class BurgerController extends AbstractController
 {
     private array $burgers = [];
-
+    
     #[Route('/burgers', name: 'burgers_list', methods: ['GET'])]
-    public function list(): Response
+    public function list(EntityManagerInterface $entityManager): Response
     {
+        $burgers = $entityManager->getRepository(Burger::class)->findAll();
+
         return $this->render('burgers_list.html.twig', [
-            'burgers' => $this->burgers,
+            'burgers' => $burgers,
         ]);
     }
 
